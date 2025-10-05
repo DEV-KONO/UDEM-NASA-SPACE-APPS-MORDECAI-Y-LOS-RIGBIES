@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+// Import the local db.json at build time so the page is static and doesn't need an API
+import db from '../../db.json'
 
 type ProjectRow = {
   id: number
@@ -129,20 +131,11 @@ const loadCsvProjects = async () => {
   isLoadingProjects.value = true
   try {
     projectsError.value = null
-    // En desarrollo usa json-server, en producción usa archivo estático
-    const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
-    if (isLocal) {
-      const res = await fetch('http://localhost:3001/projects')
-      if (!res.ok) throw new Error('Error al cargar proyectos (dev)')
-      projects.value = await res.json()
-    } else {
-      const res = await fetch('/projects.json', { cache: 'no-store' })
-      if (!res.ok) throw new Error('Error al cargar projects.json')
-      const arr = await res.json()
-      projects.value = Array.isArray(arr) ? arr : (arr?.projects ?? [])
-    }
+    // Use the imported JSON directly (static at build-time)
+    const arr = (db && db.projects) || []
+    projects.value = Array.isArray(arr) ? arr : []
   } catch (e) {
-    projectsError.value = 'No se pudo cargar proyectos. En dev: npm run import-csv && npm run api. En prod: asegúrate de tener public/projects.json.'
+    projectsError.value = 'No se pudo cargar proyectos desde db.json importado.'
   } finally {
     isLoadingProjects.value = false
   }

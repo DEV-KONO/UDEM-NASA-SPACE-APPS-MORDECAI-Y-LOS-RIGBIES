@@ -1,0 +1,35 @@
+{
+  "projects": [
+    {
+      "id": 23613,
+      "title": "Packaged Food Mass Reduction Technology Development (PI=Leong)",
+      "description": "The Advanced Food Technology (AFT) project seeks to define a safe, palatable, and nutritious food system to support long duration space missions beyond Low Earth Orbit (LEO). Balancing resources such as water, food preparation time, stowage volume, launch mass, and power requirements is central to defining a functioning food system solution for these missions. Prior AFT work has addressed the need to decrease the mass of the food system, and has recommended means such as reducing the moisture of the food system, increasing the nutrient density of the food system, and streamlining food packaging systems to accomplish this. Building on these recommendations, the objective of this project is therefore to identify technologies required to formulate meal replacement options that would decrease the mass and volume of the food system, as well as decrease the crew time associated with meal preparation. As commercially available meal replacement products are not adequate for NASA needs, this project will proceed by formulating new products that meet the unique requirements of spaceflight beyond LEO. The development of meal replacement options for the packaged space food system will be achieved by:  * Aligning previous studies on nutrition and mass savings to compile the nutritional requirements and consumption guidelines for meal replacement beverages and bars.  * Developing meal replacement bar(s) meeting nutrition, sensory, and shelf life requirements for space food systems.  * Developing meal replacement beverage(s) meeting nutrition, sensory, and shelf life requirements for space food systems.  * Assessing the meal replacement system and creating an implementation plan for the meal replacement options.  Some accommodations have been made in the product development design to ensure that the project is completed within budget and on schedule. The recipe development of the bars and beverages will baseline from existing commercial bars and beverages rather than starting from new formulas even though significant changes are likely required to meet nutritional needs. Researchers will leverage flavor concepts from existing commercial bar and beverage products. Accelerated shelf life testing will done to assess stability as the project duration is shorter than the desired shelf life. While the ideal sensory evaluation would be a repeated exposure test to ensure acceptability levels were sustained over multiple experiences, the product amounts and the availability of panelists requires a one-time sensory evaluation for each product. Upon the completion of this study, an assessment of representative formulated meal replacement options will be provided to stakeholders, in order to offer an understanding of meal replacement technology and associated mass savings.",
+      "program": "Human Research Program",
+      "taxonomy": "TX06.3.5 - Food Production, Processing, and Preservation",
+      "lastUpdated": "02/09/2024 16:09",
+      "url": "Packaged Food Mass Reduction Technology Development (PI=Leong) (https://techport.nasa.gov/view/23613)",
+      "apiUrl": "https://techport.nasa.gov/api/projects/23613"
+    },
+    {
+      "id": 106593,
+      "title": "GPS/Galileo Receiver for Human Exploration & Operations Mission Directorate (GARHEO)",
+      "description": "",
+      "program": "Flight Opportunities",
+      "taxonomy": "TX05.X - Other Communications, Navigation, and Orbital Debris Tracking and Characterization Systems",
+      "lastUpdated": "02/06/2024 17:18",
+      "url": "GPS/Galileo Receiver for Human Exploration & Operations Mission Directorate (GARHEO) (https://techport.nasa.gov/view/106593)",
+      "apiUrl": "https://techport.nasa.gov/api/projects/106593"
+    },
+    {
+      "id": 91591,
+      "title": "MEMS Reaction Control and Maneuvering for Picosats beyond LEO",
+      "description": "This project further develops a multi-functional SmallSat technology for low-power attitude control of picosatellites beyond low Earth orbit. The film-evaporation MEMS tunable array (FEMTA) concept utilizes a green propellant and microscale effects in fluid surface tension and advanced MEMS microfabrication to achieve thrust under 0.1 W of power and within 0.1 U total system volume. Interplanetary CubeSats can utilize FEMTA for high slew rate attitude corrections in addition to desaturating reaction wheels. The FEMTA in cooling mode can be used for thermal control during high-power communication events, which are likely to accompany the attitude correction.",
+      "program": "Small Spacecraft Technology",
+      "taxonomy": "TX17.3.4 - Control Force and Torque Actuators",
+      "lastUpdated": "02/06/2024 17:18",
+      "url": "MEMS Reaction Control and Maneuvering for Picosats beyond LEO (https://techport.nasa.gov/view/91591)",
+      "apiUrl": "https://techport.nasa.gov/api/projects/91591"
+    }
+    /* the rest of db.json was copied here in the actual file */
+  ]
+}
