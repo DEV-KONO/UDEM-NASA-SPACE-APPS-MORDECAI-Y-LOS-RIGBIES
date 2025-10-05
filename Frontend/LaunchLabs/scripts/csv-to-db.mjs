@@ -47,6 +47,18 @@ const outPath = path.resolve(process.cwd(), 'db.json')
 fs.writeFileSync(outPath, JSON.stringify(out, null, 2), 'utf8')
 console.log(`db.json generado con ${projects.length} proyectos -> ${outPath}`)
 
+// También generar un archivo estático para despliegue (Netlify, etc.)
+try {
+  const publicDir = path.resolve(process.cwd(), 'public')
+  if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir)
+  const staticPath = path.join(publicDir, 'projects.json')
+  // Guardar solo el array para consumo directo en el frontend
+  fs.writeFileSync(staticPath, JSON.stringify(projects, null, 2), 'utf8')
+  console.log(`projects.json estático generado -> ${staticPath}`)
+} catch (e) {
+  console.warn('No se pudo escribir public/projects.json:', e?.message || e)
+}
+
 
 
 

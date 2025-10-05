@@ -129,11 +129,20 @@ const loadCsvProjects = async () => {
   isLoadingProjects.value = true
   try {
     projectsError.value = null
-    const res = await fetch('http://localhost:3001/projects')
-    if (!res.ok) throw new Error('Error al cargar proyectos')
-    projects.value = await res.json()
+    // En desarrollo usa json-server, en producción usa archivo estático
+    const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+    if (isLocal) {
+      const res = await fetch('http://localhost:3001/projects')
+      if (!res.ok) throw new Error('Error al cargar proyectos (dev)')
+      projects.value = await res.json()
+    } else {
+      const res = await fetch('/projects.json', { cache: 'no-store' })
+      if (!res.ok) throw new Error('Error al cargar projects.json')
+      const arr = await res.json()
+      projects.value = Array.isArray(arr) ? arr : (arr?.projects ?? [])
+    }
   } catch (e) {
-    projectsError.value = 'No se pudo cargar proyectos. Corre: npm run import-csv y luego npm run api'
+    projectsError.value = 'No se pudo cargar proyectos. En dev: npm run import-csv && npm run api. En prod: asegúrate de tener public/projects.json.'
   } finally {
     isLoadingProjects.value = false
   }
