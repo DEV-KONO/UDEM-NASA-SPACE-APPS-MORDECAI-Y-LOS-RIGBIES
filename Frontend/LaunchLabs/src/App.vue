@@ -1,5 +1,19 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { getProducts, createProduct, type Product } from '@/api/products'
+import { useRoute } from 'vue-router'
+
+// Tipos para proyectos importados desde CSV -> json-server
+type ProjectRow = {
+  id: number
+  title: string
+  description: string
+  program: string
+  taxonomy: string
+  lastUpdated: string
+  url: string
+  apiUrl: string
+}
 
 // Variables reactivas para el simulador
 const isRunning = ref(false)
@@ -212,12 +226,78 @@ const getPhaseClass = (phase: string) => {
 // Inicializar animaciones al montar el componente
 onMounted(() => {
   updateAnimations()
+  // Cargar productos al iniciar
+  loadProducts()
+  // Cargar proyectos CSV a la tabla
+  loadCsvProjects()
 })
 
 // Limpiar intervalos al desmontar el componente
 onUnmounted(() => {
   stopSimulation()
 })
+
+// =====================
+// Productos (API demo)
+// =====================
+const products = ref<Product[]>([])
+const isLoadingProducts = ref(false)
+const isAddingProduct = ref(false)
+const apiError = ref<string | null>(null)
+
+const loadProducts = async () => {
+  isLoadingProducts.value = true
+  try {
+    apiError.value = null
+    products.value = await getProducts()
+  } catch (e) {
+    apiError.value = 'No se pudo cargar. Asegúrate de correr: npx json-server --watch db.json --port 3001'
+  } finally {
+    isLoadingProducts.value = false
+  }
+}
+
+const addDemoProduct = async () => {
+  isAddingProduct.value = true
+  try {
+    const demo: Omit<Product, 'id'> = {
+      name: 'Módulo de acoplamiento',
+      price: 89999,
+      stock: 5
+    }
+    apiError.value = null
+    await createProduct(demo)
+    await loadProducts()
+  } catch (e) {
+    apiError.value = 'No se pudo crear. Corre la API local primero.'
+  } finally {
+    isAddingProduct.value = false
+  }
+}
+
+// Router
+const route = useRoute()
+
+// =====================
+// Proyectos (CSV -> json-server)
+// =====================
+const projects = ref<ProjectRow[]>([])
+const isLoadingProjects = ref(false)
+const projectsError = ref<string | null>(null)
+
+const loadCsvProjects = async () => {
+  isLoadingProjects.value = true
+  try {
+    projectsError.value = null
+    const res = await fetch('http://localhost:3002/projects')
+    if (!res.ok) throw new Error('Error al cargar proyectos')
+    projects.value = await res.json()
+  } catch (e) {
+    projectsError.value = 'No se pudo cargar proyectos. Corre: npm run import-csv y luego npm run api'
+  } finally {
+    isLoadingProjects.value = false
+  }
+}
 </script>
 
 <template>
@@ -239,15 +319,20 @@ onUnmounted(() => {
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#about">Acerca</a></li>
-            <li class="nav-item"><a class="nav-link" href="#projects">Proyectos</a></li>
+            <li class="nav-item"><a class="nav-link" href="/">Acerca</a></li>
+            <li class="nav-item"><a class="nav-link" href="/projects">Proyectos</a></li>
+            <!-- Productos removido -->
             <li class="nav-item"><a class="nav-link" href="#signup">Video</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <!-- Contenido principal -->
+    <!-- Vista de rutas (actualmente vacío) -->
+    <RouterView />
+
+    <!-- Contenido principal (solo cuando no estamos en /projects) -->
+    <div v-if="route.name !== 'projects'">
     <header class="masthead d-flex align-items-center justify-content-center">
   <div class="text-center">
     <h1 class="text-uppercase">Explora el Universo</h1>
@@ -735,6 +820,8 @@ onUnmounted(() => {
       </div>
     </section>
 
+    
+
     <!-- Footer Épico -->
     <footer class="epic-footer">
       <!-- Fondo espacial animado -->
@@ -831,6 +918,7 @@ onUnmounted(() => {
         }"></div>
       </div>
     </footer>
+    </div>
   </div>
 </template>
 
@@ -1458,6 +1546,20 @@ body, html {
   background: rgba(220, 53, 69, 0.2);
   color: #dc3545;
   border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+/* Products section */
+.products-section {
+  background: linear-gradient(135deg, #0f0f23, #1a1a2e 60%, #16213e);
+  padding: 4rem 0 6rem;
+}
+
+.products-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 /* Animación de pulso para estadísticas */

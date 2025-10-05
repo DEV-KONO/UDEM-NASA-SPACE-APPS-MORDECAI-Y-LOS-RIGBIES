@@ -6,12 +6,6 @@ import router from './router'
 
 import '@/grayscale.css'
 
-
-createApp(App).mount('#app')
-
-
 const app = createApp(App)
-
 app.use(router)
-
 app.mount('#app')
