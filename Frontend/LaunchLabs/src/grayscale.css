@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&family=Nunito:wght@200;300;400;600;700;800;900&display=swap");
+
+body {
+  font-family: "Nunito", sans-serif;
+  background-color: #000;
+  color: #fff;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 700;
+}
+
+/* Navbar */
+#mainNav {
+  background-color: transparent;
+  transition: background-color 0.3s ease-in-out;
+}
+#mainNav .navbar-brand {
+  color: #fc3d21;
+  font-weight: 700;
+}
+#mainNav .nav-link {
+  color: #fc3d21;
+  transition: color 0.2s;
+}
+#mainNav .nav-link:hover {
+  color: #8b2313;
+}
+#mainNav.navbar-scrolled {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+/* Hero (Masthead) */
+.masthead {
+  position: relative;
+  height: 100vh;
+  background: url("/img/foto1.jpg") no-repeat center center;
+  background-size: cover;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 0 10px #000;
+}
+.masthead .text-center {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+.masthead h1 {
+  font-size: 4rem;
+  text-transform: uppercase;
+}
+.masthead h2 {
+  font-weight: 300;
+  color: rgb(255, 255, 255);
+  margin-bottom: 2rem;
+}
+.masthead .btn-primary {
+  background-color: #0b3d91;
+  border: none;
+}
+.masthead .btn-primary:hover {
+  background-color: #0a2f6e;
+}
+
+/* About Section */
+.about-section {
+  background-color: #111;
+  padding: 6rem 0;
+}
+.about-section h2 {
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+.about-section p {
+  color: rgba(255, 255, 255, 0.6);
+}
+.about-section img {
+  margin-top: 2rem;
+  border-radius: 10px;
+  max-width: 600px;
+}
+
+/* Projects */
+.projects-section {
+  padding: 6rem 0;
+  background-color: #f8f9fa;
+  color: #000;
+}
+.featured-text {
+  padding: 2rem;
+}
+.featured-text h4 {
+  color: #000;
+}
+.featured-text p {
+  color: #555;
+}
+
+/* Signup */
+.signup-section {
+  background-color: #0b3d91;
+  padding: 5rem 0;
+}
+.signup-section h2 {
+  font-weight: 700;
+  color: #fff;
+}
+.signup-section input {
+  border-radius: 50rem;
+  padding: 0.75rem 1rem;
+}
+.signup-section button {
+  border-radius: 50rem;
+  background-color: #64a19d;
+  border: none;
+  padding: 0.75rem 1.5rem;
+}
+.signup-section button:hover {
+  background-color: #4e7f7c;
+}
+
+/* Contact */
+.contact-section {
+  background-color: #000;
+  padding: 5rem 0;
+}
+.contact-section .card {
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+.contact-section .card i {
+  color: #64a19d;
+  margin-bottom: 1rem;
+}
+.contact-section a {
+  color: #64a19d;
+  text-decoration: none;
+}
+.contact-section a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+  background-color: #000;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 2rem 0;
+}
+
+/* Utility */
+.text-white-50 {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+.bg-black {
+  background-color: #000 !important;
+}
+.btn-primary {
+  background-color: #64a19d;
+  border-color: #64a19d;
+}
+.btn-primary:hover {
+  background-color: #4e7f7c;
+}
